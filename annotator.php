@@ -474,15 +474,14 @@
       $trackpoint->altitudeMetersInterpolated = $trackpoint->altitudeMeters + ($i-$ib)*$altitudeStep;
       alog ("altitudeMeters [{$trackpoint->altitudeMeters}], interpolated [{$trackpoint->altitudeMetersInterpolated}]");
 
-
       $imagePath = $srcframe;
 
-	  ob_start();
+	    ob_start();
       renderFrame ();
-	  $buffer = ob_get_clean();
+	    $buffer = ob_get_clean();
 
       $svg="$TEMPDIR/x.svg";
-	  file_put_contents($svg, $buffer);
+	    file_put_contents($svg, $buffer);
 
       $command=false;
       $rasterizer = 'phantomjs';
@@ -496,7 +495,8 @@
           $command="rasterizer -m image/jpeg -q ${q} -d ${oFile} $svg";
           break;
         case 'phantomjs':
-          $command="/home/fabrizio/phantomjs/bin/phantomjs rasterize.js $svg ${oFile}";
+          $command="phantomjs rasterize.js $svg ${oFile}";
+          break;
       }
       if ($command) {
         alog ("Executing [$command]");
