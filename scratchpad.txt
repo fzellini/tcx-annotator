@@ -1,0 +1,102 @@
+- gestione missing telemetry
+- tool per sincronismo
+- orientamento
+- mappa
+
+Se i dati sono in ritardo rispetto al video ( es nel video parto con tachimetro ancora a 0 )
+occorre diminuire il valore dopo @
+
+
+ffmpeg -r 30 -i "/tmp/annotator/dst/image-%06d.jpg" -c:v libx264 -r 30 -pix_fmt yuv420p out.mp4
+
+ffmpeg -r 24 -i %04d.jpg -s hd1080 -vcodec libx264 -vpre hq -bf 0 -crf 16 myfile.mp4
+ffmpeg -y -r 30 -i "/tmp/annotator/dst/image-%06d.jpg" -vcodec libx264  -b:v 10000k -profile:v baseline -level 3.1  myfile.mp4
+
+
+./annotator.php -i /home/fabrizio/Desktop/DCIM/P1030904.MOV -g "2014-07-02T15:15:35Z@00:00:07" -t /home/fabrizio/Dropbox/sessioni/IpBike_487_1.tcx --skip-split --skip-render --ffmpeg-outfile-options="-vcodec libx264 -b:v 5000k -profile:v baseline -level 3.1" -o cazzo.mp4
+
+./annotator.php -i /home/fabrizio/Desktop/DCIM/P1030903.MOV -g "2014-07-02T15:09:01Z@00:00:02" -t /home/fabrizio/Dropbox/sessioni/IpBike_487_1.tcx --ffmpeg-outfile-options="-vcodec libx264 -b:v 6000k -profile:v baseline -level 3.1" -o P1030903.mp4
+
+2014-07-02T15:08:42Z@00:09:06
+
+./annotator.php -i /home/fabrizio/Desktop/DCIM/P1030902.MOV -g "2014-07-02T15:08:42Z@00:09:06" -t /home/fabrizio/Dropbox/sessioni/IpBike_487_1.tcx --ffmpeg-outfile-options="-vcodec libx264 -b:v 6000k -profile:v baseline -level 3.1" -o P1030902.mp4; scp P1030902.mp4 media@mediaserver:/media/disk3/raw/ciclabile-erba-alta-27-06-2014
+
+es.
+2014-07-02T15:08:42Z@00:09:04.5
+
+./annotator.php --skip-split  -i /home/fabrizio/Desktop/DCIM/P1030902.MOV -g "2014-07-02T15:08:42Z@00:09:04.5" -t /home/fabrizio/Dropbox/sessioni/IpBike_487_1.tcx --ffmpeg-outfile-options="-vcodec libx264 -b:v 6000k -profile:v baseline -level 3.1" -o P1030902.mp4;
+
+salitaccia fao
+./annotator.php  --temp-dir=/tmp/fao --template=elevation -i /home/fabrizio/Desktop/overlay/DCIM/103_PANA/P1030909.MOV -g "2014-07-04T05:24:02Z@00:00:09" -t "/home/fabrizio/Dropbox/sessioni/2014/07/2014-07-04T04:47:39Z.tcx" --ffmpeg-outfile-options="-vcodec libx264 -b:v 8000k -profile:v baseline -level 3.1" -o fao3.mp4;scp fao3.mp4 media@mediaserver:/media/disk3/raw/ciclabile-erba-alta-27-06-2014
+
+./annotator.php --frames=1 --temp-dir=/tmp/fao --template=elevation -i /home/fabrizio/Desktop/P1030909.MOV -g "2014-07-04T05:24:02Z@00:00:09" -t "/home/fabrizio/Dropbox/sessioni/2014/07/2014-07-04T04:47:39Z.tcx" --ffmpeg-outfile-options="-vcodec libx264 -b:v 8000k -profile:v baseline -level 3.1" -o fao.mp4
+
+
+
+Installare ffmpeg
+
+https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu
+
+convertire in frames jpg
+ffmpeg -y -i outfile99.avi -qscale 0 "c/image-%06d.jpg"
+ffmpeg -y -i outfile99.avi  "c/image-%06d.jpg"
+
+
+ffmpeg -r 30 -i "c/image-%06d.jpg" -c:v libx264 -r 30 -pix_fmt yuv420p out.mp4
+
+
+
+- gauges
+http://www.clker.com/search/speed/1
+http://www.clker.com/cliparts/1/d/e/f/12982682651105088574speedo%20meter.svg
+
+- rinomimare frames con data formato iso
+
+
+Il php chiama il template che torna un svg con l'immagine e le decorazioni, che poi verrà usato per rifare il video di uscita
+Es.
+Si passano i dati del tcx e altre cose addizionali
+
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="1280" height="720"  version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <desc>test</desc>
+
+
+  <image x="0" y="0" width="1280" height="720" xlink:href="c/image-000001.jpg" />
+
+  <rect x="24" y="600" width="300" height="100" fill-opacity=".5" fill="yellow" stroke="blue" stroke-width="0" />
+  <text x="24" y="700" font-family="monospace" font-size="60" fill="blue" >31 Km/h</text>
+
+
+</svg>
+
+
+
+
+
+
+mencoder -ovc x264 "http://ipcamera1.home.lan/videostream.cgi?loginuse=admin&loginpas=" -x264encopts level_idc=12:bitrate=128:bframes=2:subq=7:partitions=all:8x8dct:me=hex:me_range=16:frameref=1:trellis=0:b_pyramid:weight_b:mixed_refs:threads=0:qcomp=0.6:keyint=250:min-keyint=25:direct=spatial -vf scale=240:192 -oac lavc -lavcopts acodec=libfaac:abitrate=56 -srate 48000 -af channels=2 -of lavf -ofps 5 -lavfopts format=mp4 -o OUTPUT.mp4
+
+
+nice -n 19 mencoder -frames 150 "http://ipcamera1.home.lan/videostream.cgi?loginuse=admin&loginpas=" -oac faac -faacopts mpeg=4:object=2:raw:br=128 -of lavf -lavfopts format=mp4 -ovc x264 -sws 9 -x264encopts nocabac:level_idc=30:bframes=0:bitrate=256:threads=auto:turbo=1:global_header:subq=5:frameref=6:partitions=all:trellis=1:chroma_me:me=umh -o cazzo.mp4
+
+ ffmpeg -r 5 -frames 10 -i pippo.mjpg -c:v libx264 -preset slow -crf 22 -c:a copy output.mkv
+
+curl ""http://ipcamera1.home.lan/videostream.cgi?loginuse=admin&loginpas="" | ffmpeg -r 5 -frames 10 -i - -c:v libx264 -preset slow -crf 22 -c:a copy output.mkv
+
+ffmpeg -r 5  -i pippo.mjpg -frames 10 -c:v libx264 -preset fast -crf 22 -c:a copy output.mkv
+
+ffmpeg -r 5  -i pippo.mjpg -dframes 5 -c:v libx264 -profile:v baseline -level 3.0 -c:a copy output.mkv
+
+ffmpeg -r 5  -i pippo.mjpg -frames 10 -c:v libx264 -preset fast -crf 22  output.mkv
+
+
+Stabilization
+ffmpeg -y -i "/home/fabrizio/Desktop/P1030909.MOV"  -vf vidstabdetect=shakiness=10:accuracy=10 out.avi;ffmpeg -y -i "/home/fabrizio/Desktop/P1030909.MOV"  -vf vidstabtransform  out.mp4
+ffmpeg -y -i P1030903.MOV  -vf vidstabdetect=shakiness=10:accuracy=12 out.avi;ffmpeg -y -i P1030903.MOV  -vf vidstabtransform  P1030903.mp4
+
+./annotator.php --temp-dir=/tmp/fao --template=elevation -i out.mp4 -g "2014-07-04T05:24:02Z@00:00:09" -t "/home/fabrizio/Dropbox/sessioni/2014/07/2014-07-04T04:47:39Z.tcx" --ffmpeg-outfile-options="-vcodec libx264 -b:v 8000k -profile:v baseline -level 3.1" -o fao.mp4
+
+./annotator.php --temp-dir=/tmp/fao --template=elevation -i  /home/fabrizio/Desktop/ciclo-04-07-2014/P1030905-stabilized.mp4 -g "2014-07-04T04:59:28Z@00:01:02" -t "/home/fabrizio/Dropbox/sessioni/2014/07/2014-07-04T04:47:39Z.tcx" --ffmpeg-outfile-options="-vcodec libx264 -b:v 8000k -profile:v baseline -level 3.1" -o /home/fabrizio/Desktop/ciclo-04-07-2014/P1030905-annotated.mp4
