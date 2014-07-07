@@ -11,5 +11,7 @@ The output svg file contains the original frame and the telemetry data ( gauges,
 The svg file is rendered to a jpeg using a renderer ( convert, phantomjs, batik )
 Finally, the output movie is done by merging the rendered jpeg
 
+More info on http://fabrizio.zellini.org/uno-script-per-sovraimporre-dati-gps-su-un-video
+
 
 
