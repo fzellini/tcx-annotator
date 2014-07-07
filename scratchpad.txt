@@ -68,6 +68,7 @@ ffmpeg -r 5  -i pippo.mjpg -dframes 5 -c:v libx264 -profile:v baseline -level 3.
 ffmpeg -r 5  -i pippo.mjpg -frames 10 -c:v libx264 -preset fast -crf 22  output.mkv
 
 
+
 Stabilization
 ffmpeg -y -i "/home/fabrizio/Desktop/P1030909.MOV"  -vf vidstabdetect=shakiness=10:accuracy=10 out.avi;ffmpeg -y -i "/home/fabrizio/Desktop/P1030909.MOV"  -vf vidstabtransform  out.mp4
 ffmpeg -y -i P1030903.MOV  -vf vidstabdetect=shakiness=10:accuracy=10 out.avi;ffmpeg -y -i P1030903.MOV  -vf vidstabtransform  P1030903.mp4
