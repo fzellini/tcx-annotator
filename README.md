@@ -1,7 +1,7 @@
 tcx-annotator
 =============
 
-A script to overlay video with gps data
+A command line utility to overlay video with gps data
 
 Given a video of a bike ride and telemetry data as tcx file, the script combines the two in a video that contains the original video with telemetry data overlay
 
