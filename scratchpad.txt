@@ -83,6 +83,9 @@ ffmpeg -y -i /home/fabrizio/Desktop/overlay/DCIM/103_PANA/P1030915.MOV  -vf vids
 ./annotator.php  --temp-dir=/tmp/annotator1 --template=elevation -i  /home/fabrizio/Desktop/overlay/DCIM/103_PANA/P1030914-stabilized.mp4 -g "2014-07-07T04:52:16Z@00:00:04" -t "/home/fabrizio/Dropbox/sessioni/2014/07/2014-07-07T04:52:00Z.tcx" --ffmpeg-outfile-options="-vcodec libx264 -b:v 8000k -profile:v baseline -level 3.1" -o /home/fabrizio/Desktop/overlay/DCIM/103_PANA/P1030914-annotated.mp4
 
 
--- prova
+
+./annotator.php  --temp-dir=/tmp/annotator1 --template=elevation -i  /home/fabrizio/Desktop/overlay/DCIM/103_PANA/P1030921-stabilized.mp4 -g "2014-07-07T15:24:04Z@00:00:06" -t "/home/fabrizio/Dropbox/sessioni/2014/07/2014-07-07T14:40:07Z.tcx" --ffmpeg-outfile-options="-vcodec libx264 -b:v 8000k -profile:v baseline -level 3.1" -o /home/fabrizio/Desktop/overlay/DCIM/103_PANA/P1030921-annotated.mp4
+
+
 
 
