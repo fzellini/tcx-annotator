@@ -86,6 +86,7 @@ ffmpeg -y -i /home/fabrizio/Desktop/overlay/DCIM/103_PANA/P1030915.MOV  -vf vids
 
 ./annotator.php  --temp-dir=/tmp/annotator1 --template=elevation -i  /home/fabrizio/Desktop/overlay/DCIM/103_PANA/P1030921-stabilized.mp4 -g "2014-07-07T15:24:04Z@00:00:06" -t "/home/fabrizio/Dropbox/sessioni/2014/07/2014-07-07T14:40:07Z.tcx" --ffmpeg-outfile-options="-vcodec libx264 -b:v 8000k -profile:v baseline -level 3.1" -o /home/fabrizio/Desktop/overlay/DCIM/103_PANA/P1030921-annotated.mp4
 ./annotator.php  --temp-dir=/tmp/annotator1 --template=elevation -i  /home/fabrizio/Desktop/overlay/DCIM/103_PANA/P1030921-stabilized.mp4 -g "2014-07-07T15:24:04Z@00:00:04.30" -t "/home/fabrizio/Dropbox/sessioni/2014/07/2014-07-07T14:40:07Z.tcx" --ffmpeg-outfile-options="-vcodec libx264 -b:v 8000k -profile:v baseline -level 3.1" -o /home/fabrizio/Desktop/overlay/DCIM/103_PANA/P1030921-annotated1.mp4
+./annotator.php  --temp-dir=/tmp/annotator1 --template=elevation -i  /home/fabrizio/Desktop/overlay/DCIM/103_PANA/P1030921-stabilized.mp4 -g "2014-07-07T15:24:04Z@00:00:03.30" -t "/home/fabrizio/Dropbox/sessioni/2014/07/2014-07-07T14:40:07Z.tcx" --ffmpeg-outfile-options="-vcodec libx264 -b:v 8000k -profile:v baseline -level 3.1" -o /home/fabrizio/Desktop/overlay/DCIM/103_PANA/P1030921-annotated2.mp4 --skip-split
 
 
 
