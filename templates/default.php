@@ -31,9 +31,6 @@ echo '<?xml version="1.0" standalone="no"?>'."\n";
 </defs>
 
   <image x="0" y="0" width="<?= $imageWidth?>" height="<?= $imageHeight?>" xlink:href="<?= $imagePath?>" />
-  <rect x="0" y="0" width="<?= $imageWidth?>" height="32" fill-opacity=".5" fill="black" stroke="blue" stroke-width="0" />
-
-  <text  y="20" x="<?= (int)($imageWidth/2) ?>" style="font-family: 'Delicious'; font-weight:normal; font-style: normal;text-anchor:middle" font-size="20" fill="yellow" >Ciclabile da Ponte Milvio a Castel Giubileo - 2 Luglio 2014</text>
 
   <path fill="black" fill-opacity=".5" stroke-width="1" d="M 360 730 A 350,180 0 1 1 920 730"/>
 
