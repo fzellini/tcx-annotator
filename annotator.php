@@ -122,6 +122,7 @@
     echo "      --skip-render                       skip frame rendering\n";
     echo "      --temp-dir=<tempdir location>       temp dir location (default $TEMPDIR )\n";
     echo "      --frames=<frames>                   process only <frames> frames (default all)\n";
+    echo "      --skip-frames=<frames>              skip <frames> frames in rendering (default 0)\n";
     echo "  -h, --help  Print this help\n";
     echo "Ex. {$argv[0]} -i infile.mp4 --video-timing=2014-06-30T04:48:17Z@00:00:00 -t trip.tcx -o outfile.mkv\n";
     die;
@@ -133,6 +134,7 @@
   $template = $defaultTemplate;
   $rasterizer = $defaultRasterizer;
   $templates=array();
+  $skipframes=0;
 
 
 
@@ -166,6 +168,7 @@
       "quality:",
       "temp-dir:",
       "frames:",
+      "skip-frames:",
       "help"         
   );
   $options = getopt("i:g:t:o:r:T:h", $longopts);
@@ -241,6 +244,9 @@
         break;
       case 'frames':
         $frames=(int)$value;
+        break;
+      case 'skip-frames':
+        $skipframes=(int)$value;
         break;
 
     }
@@ -358,8 +364,15 @@
     system("rm -rf ${DSTFRAMEDIR}");
     mkdir($DSTFRAMEDIR);
   }
+  $skipframesCopy=$skipframes;
   while ( !$skipRender ){
     $srcframe = sprintf ("${SRCFRAMEDIR}/${IMAGENAME}",$i);
+    if ($skipframes>0) {
+      $skipframes--;
+      $i++;
+      continue;
+    }
+
     //alog ($srcframe);
     if (!file_exists($srcframe)){
       $srcframe1 = sprintf ("${SRCFRAMEDIR}/${IMAGENAME}",$i+1);
@@ -485,7 +498,7 @@
 
       $command=false;
       $rasterizer = 'phantomjs';
-      $oFile = sprintf ("${DSTFRAMEDIR}/${IMAGENAME}",$i);
+      $oFile = sprintf ("${DSTFRAMEDIR}/${IMAGENAME}",$i-$skipframesCopy);
       switch ($rasterizer){
         case 'magick':
 		      $command= "convert -quality ${jpegQuality} $svg ${oFile}";
