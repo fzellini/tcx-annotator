@@ -8,6 +8,9 @@ TODO
 Se i dati sono in ritardo rispetto al video ( es nel video parto con tachimetro ancora a 0 )
 occorre diminuire il valore dopo @
 
+se i dati sono in anticipo rispetto al video ( la velocità aumenta prima di fare una discesa )
+occorre diminuire il valore prima del @
+
 
 ffmpeg -r 30 -i "/tmp/annotator/dst/image-%06d.jpg" -c:v libx264 -r 30 -pix_fmt yuv420p out.mp4
 ffmpeg -r 24 -i %04d.jpg -s hd1080 -vcodec libx264 -vpre hq -bf 0 -crf 16 myfile.mp4
@@ -87,6 +90,10 @@ ffmpeg -y -i /home/fabrizio/Desktop/overlay/DCIM/103_PANA/P1030915.MOV  -vf vids
 ./annotator.php  --temp-dir=/tmp/annotator1 --template=elevation -i  /home/fabrizio/Desktop/overlay/DCIM/103_PANA/P1030921-stabilized.mp4 -g "2014-07-07T15:24:04Z@00:00:06" -t "/home/fabrizio/Dropbox/sessioni/2014/07/2014-07-07T14:40:07Z.tcx" --ffmpeg-outfile-options="-vcodec libx264 -b:v 8000k -profile:v baseline -level 3.1" -o /home/fabrizio/Desktop/overlay/DCIM/103_PANA/P1030921-annotated.mp4
 ./annotator.php  --temp-dir=/tmp/annotator1 --template=elevation -i  /home/fabrizio/Desktop/overlay/DCIM/103_PANA/P1030921-stabilized.mp4 -g "2014-07-07T15:24:04Z@00:00:04.30" -t "/home/fabrizio/Dropbox/sessioni/2014/07/2014-07-07T14:40:07Z.tcx" --ffmpeg-outfile-options="-vcodec libx264 -b:v 8000k -profile:v baseline -level 3.1" -o /home/fabrizio/Desktop/overlay/DCIM/103_PANA/P1030921-annotated1.mp4
 ./annotator.php  --temp-dir=/tmp/annotator1 --template=elevation -i  /home/fabrizio/Desktop/overlay/DCIM/103_PANA/P1030921-stabilized.mp4 -g "2014-07-07T15:24:04Z@00:00:03.30" -t "/home/fabrizio/Dropbox/sessioni/2014/07/2014-07-07T14:40:07Z.tcx" --ffmpeg-outfile-options="-vcodec libx264 -b:v 8000k -profile:v baseline -level 3.1" -o /home/fabrizio/Desktop/overlay/DCIM/103_PANA/P1030921-annotated2.mp4 --skip-split
+
+./annotator.php  --temp-dir=/tmp/annotator1 --template=elevation -i  /home/fabrizio/Desktop/overlay/DCIM/103_PANA/P1030922-stabilized.mp4 -g "2014-07-07T15:40:55Z@00:04:04" -t "/home/fabrizio/Dropbox/sessioni/2014/07/2014-07-07T14:40:07Z.tcx" --ffmpeg-outfile-options="-vcodec libx264 -b:v 8000k -profile:v baseline -level 3.1" -o /home/fabrizio/Desktop/overlay/DCIM/103_PANA/P1030922-annotated.mp4
+./annotator.php  --temp-dir=/tmp/annotator1 --template=elevation -i  /home/fabrizio/Desktop/overlay/DCIM/103_PANA/P1030922-stabilized.mp4 -g "2014-07-07T15:40:53Z@00:04:04" -t "/home/fabrizio/Dropbox/sessioni/2014/07/2014-07-07T14:40:07Z.tcx" --ffmpeg-outfile-options="-vcodec libx264 -b:v 8000k -profile:v baseline -level 3.1" -o /home/fabrizio/Desktop/overlay/DCIM/103_PANA/P1030922-annotated1.mp4 --skip-split --frames=400 --skip-frames=5100
+./annotator.php  --temp-dir=/tmp/annotator1 --template=elevation -i  /home/fabrizio/Desktop/overlay/DCIM/103_PANA/P1030922-stabilized.mp4 -g "2014-07-07T15:40:53Z@00:04:04" -t "/home/fabrizio/Dropbox/sessioni/2014/07/2014-07-07T14:40:07Z.tcx" --ffmpeg-outfile-options="-vcodec libx264 -b:v 8000k -profile:v baseline -level 3.1" -o /home/fabrizio/Desktop/overlay/DCIM/103_PANA/P1030922-annotated1.mp4
 
 
 
